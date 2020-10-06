@@ -9,10 +9,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
+@Document(indexName = "elastic-search", type = "name")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class VaccineEntity {
 
@@ -33,7 +35,7 @@ public class VaccineEntity {
     private String serialNumber;
     @Column(name = "purchase_price")
     private BigDecimal purchasePrice;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
     private Date purchaseDate;
 
     public Long getId() {
